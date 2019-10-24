@@ -1,0 +1,14 @@
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\config\DatasourceConfig.java
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\service\SecurityService.java
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\repository\UserRepository.java
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\repository\RoleRepository.java
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\service\UserServiceImpl.java
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\model\User.java
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\controller\UserController.java
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\config\WebSecurityConfig.java
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\service\UserDetailsServiceImpl.java
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\model\Role.java
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\service\UserService.java
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\service\SecurityServiceImpl.java
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\config\WebApplication.java
+D:\New Life\my_test_task\src\main\java\com\taskmanager\web\validator\UserValidator.java
