@@ -42,16 +42,18 @@ public class User implements Serializable {
     @Size(max = 100)
     private String password;
 
-    @NotBlank
-    @Size(max = 40)
-    private String brtId;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @ManyToMany
+    private Set<Task> tasks;
+
     public User(@NotBlank @Size(max = 40) String name, @NotBlank @Size(max = 40) @Email String email, @NotBlank @Size(max = 100) String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
     }
 }

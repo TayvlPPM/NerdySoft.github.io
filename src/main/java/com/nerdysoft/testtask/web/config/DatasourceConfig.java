@@ -20,7 +20,7 @@ public class DatasourceConfig {
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setUsername("root");
         hikariConfig.setPassword("123434v555");
-        hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/academy?createDatabaseIfNotExist=true&serverTimezone=UTC");
+        hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/taskmanager?createDatabaseIfNotExist=true&serverTimezone=UTC");
         hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
         return hikariConfig;
@@ -50,7 +50,7 @@ public class DatasourceConfig {
         bean.setPackagesToScan("com.nerdysoft.testtask.web.model");
         bean.setJpaVendorAdapter(vendorAdapter);
         bean.setDataSource(dataSource);
-        bean.setPersistenceUnitName("academy");
+        bean.setPersistenceUnitName("taskmanager");
 
         return bean;
     }
