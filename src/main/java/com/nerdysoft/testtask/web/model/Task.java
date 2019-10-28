@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
-@Table(name = "task")
+@Table(name = "tasks")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,8 +24,6 @@ public class Task {
 
     private String capture;
 
-    @ManyToMany(mappedBy = "tasks")
-    private Set<User> users;
 
     public Task(@NotEmpty @Size(max = 40) String sharedBy, @NotBlank @Size(max = 40) String capture) {
         this.sharedBy = sharedBy;
