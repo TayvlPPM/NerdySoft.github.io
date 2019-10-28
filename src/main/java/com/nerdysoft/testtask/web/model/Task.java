@@ -22,6 +22,7 @@ public class Task {
 
     private String sharedBy;
 
+    @NotBlank
     private String capture;
 
 

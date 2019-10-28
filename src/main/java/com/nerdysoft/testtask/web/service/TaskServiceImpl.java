@@ -28,7 +28,6 @@ public class TaskServiceImpl implements TaskService {
         User user = userRepository.getOne(userPrincipal.getId());
         Task task = new Task(null,addTaskRequest.getCapture());
         user.getTasks().add(task);
-        user.getUsers().add(user);
         taskRepository.save(task);
     }
 
@@ -59,7 +58,6 @@ public class TaskServiceImpl implements TaskService {
         Task task = taskRepository.getOne(shareTaskRequest.getId());
         task.setSharedBy(userPrincipal.getName());
         user.getTasks().add(task);
-        task.getUsers().add(user);
         taskRepository.save(task);
     }
 

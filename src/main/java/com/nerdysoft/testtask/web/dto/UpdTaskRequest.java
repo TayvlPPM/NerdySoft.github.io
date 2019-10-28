@@ -3,14 +3,15 @@ package com.nerdysoft.testtask.web.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Email;
+
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+
 
 @Getter
 @Setter
 public class UpdTaskRequest {
-    @NotBlank
+    @NotNull
     private Long id;
 
     @NotBlank
