@@ -11,8 +11,6 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 public class UpdTaskRequest {
-    @NotNull
-    private Long id;
 
     @NotBlank
     private String new_caption;

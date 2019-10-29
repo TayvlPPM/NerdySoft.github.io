@@ -1,11 +1,14 @@
 package com.nerdysoft.testtask.web.controller;
 
 import com.nerdysoft.testtask.web.dto.AddTaskRequest;
-import com.nerdysoft.testtask.web.dto.DeleteTaskRequest;
+import com.nerdysoft.testtask.web.dto.ShareTaskRequest;
+import com.nerdysoft.testtask.web.dto.TaskSummary;
 import com.nerdysoft.testtask.web.dto.UpdTaskRequest;
 import com.nerdysoft.testtask.web.model.Task;
 import com.nerdysoft.testtask.web.service.TaskServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.nerdysoft.testtask.web.security.CurrentUser;
@@ -15,7 +18,7 @@ import javax.validation.Valid;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/tasks")
 public class TaskController {
 
     private TaskServiceImpl taskServiceImpl;
@@ -25,32 +28,38 @@ public class TaskController {
         this.taskServiceImpl = taskServiceImpl;
     }
 
-    @PostMapping("/add")
+    @PostMapping("/")
     @PreAuthorize("hasRole('USER')")
-    public String addNewTask(@Valid @RequestBody AddTaskRequest addTaskRequest, @CurrentUser UserPrincipal currentUser) {
-        taskServiceImpl.addTask(addTaskRequest,currentUser);
-        return "aded";
+    @ResponseBody
+    public TaskSummary addNewTask(@Valid @RequestBody AddTaskRequest addTaskRequest, @CurrentUser UserPrincipal currentUser) {
+        return taskServiceImpl.addTask(addTaskRequest,currentUser);
+
     }
 
-    @PutMapping("/update")
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('USER')")
-    public String updateMyTask(@Valid @RequestBody UpdTaskRequest updTaskRequest, @CurrentUser UserPrincipal currentUser) {
-        taskServiceImpl.updateTask(updTaskRequest);
-        return "updated";
+    public TaskSummary updateMyTask(@PathVariable Long id,@Valid @RequestBody UpdTaskRequest updTaskRequest) {
+        return taskServiceImpl.updateTask(id, updTaskRequest);
+        }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('USER')")
+    public void removeTask(@PathVariable Long id) {
+        taskServiceImpl.deleteTask(id);
     }
 
-    @DeleteMapping("/delete")
+    @GetMapping("/")
     @PreAuthorize("hasRole('USER')")
-    public String removeTask(@Valid @RequestBody DeleteTaskRequest deleteTaskRequest) {
-        taskServiceImpl.deleteTask(deleteTaskRequest);
-        return "deleted";
-    }
-
-    @GetMapping("/list")
-    @PreAuthorize("hasRole('USER')")
-    public Set<Task> showTask(@CurrentUser UserPrincipal currentUser) {
+    public Set<Task> showTasks(@CurrentUser UserPrincipal currentUser) {
         return taskServiceImpl.listAll(currentUser);
 
+    }
+
+    @PostMapping("/{id}")
+    @PreAuthorize("hasRole('USER')")
+    @ResponseBody
+    public TaskSummary shareTask(@PathVariable Long id, @Valid @RequestBody ShareTaskRequest shareTaskRequest, UserPrincipal userPrincipal) {
+        return taskServiceImpl.shareTask(id, shareTaskRequest, userPrincipal);
     }
 
 }

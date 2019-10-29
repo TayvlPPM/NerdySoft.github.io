@@ -11,9 +11,6 @@ import javax.validation.constraints.NotBlank;
 public class ShareTaskRequest {
 
     @NotBlank
-    private Long id;
-
-    @NotBlank
     @Email
     private String shareToEmail;
 
