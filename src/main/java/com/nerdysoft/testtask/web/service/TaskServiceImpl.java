@@ -7,12 +7,16 @@ import com.nerdysoft.testtask.web.dto.UpdTaskRequest;
 import com.nerdysoft.testtask.web.exception.NotFoundException;
 import com.nerdysoft.testtask.web.model.Task;
 import com.nerdysoft.testtask.web.model.User;
+import com.nerdysoft.testtask.web.model.UserTask;
 import com.nerdysoft.testtask.web.repository.TaskRepository;
 import com.nerdysoft.testtask.web.repository.UserRepository;
+import com.nerdysoft.testtask.web.repository.UserTaskRepository;
 import com.nerdysoft.testtask.web.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 
@@ -22,59 +26,78 @@ public class TaskServiceImpl implements TaskService {
     private TaskRepository taskRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserTaskRepository userTaskRepository;
 
     @Override
     public TaskSummary addTask(AddTaskRequest addTaskRequest, UserPrincipal userPrincipal) {
+        Task task = new Task(addTaskRequest.getCapture());
         User user = userRepository.getOne(userPrincipal.getId());
-        Task task = new Task(null,addTaskRequest.getCapture());
-        user.getTasks().add(task);
         taskRepository.save(task);
-        return TaskSummary.builder()
-                .id(task.getId())
-                .caption(task.getCapture())
-                .sharedBy(task.getSharedBy())
-                .build();
+        UserTask userTask = new UserTask();
+        userTask.setTask(task);
+        userTask.setUser(user);
+        userTask.setSharedBy(null);
+
+        userTaskRepository.save(userTask);
+
+
+        TaskSummary taskSummary = new TaskSummary(task.getId(),
+                task.getCapture(),
+                userTask.getSharedBy());
+        return taskSummary;
+
     }
 
     @Override
-    public TaskSummary updateTask(Long id ,UpdTaskRequest updTaskRequest ){
+    public TaskSummary updateTask(Long id, UpdTaskRequest updTaskRequest, UserPrincipal userPrincipal) {
         Task updTask = taskRepository.getOne(id);
         updTask.setCapture(updTaskRequest.getNew_caption());
         taskRepository.save(updTask);
-        return TaskSummary.builder()
-                .id(updTask.getId())
-                .caption(updTask.getCapture())
-                .sharedBy(updTask.getSharedBy())
-                .build();
+        UserTask userTask = new UserTask();
+        userTaskRepository.findByUser_id(userPrincipal.getId());
+        TaskSummary taskSummary = new TaskSummary(updTask.getId(),
+                updTask.getCapture(),
+                userTask.getSharedBy());
+        return taskSummary;
     }
 
     @Override
-    public void deleteTask(Long id){
-        taskRepository.deleteById(id);
-            }
+    public void deleteTask(Long id, UserPrincipal userPrincipal) {
+        userTaskRepository.delete(userTaskRepository.findByUser_idAndTask_id(userPrincipal.getId(), id));
+        if (userTaskRepository.findByTask_id(id).isEmpty()) taskRepository.deleteById(id);
+    }
 
     @Override
-    public Set<Task> listAll(UserPrincipal userPrincipal){
+    public Set<Task> listAll(UserPrincipal userPrincipal) {
         User user = userRepository.getOne(userPrincipal.getId());
-        return user.getTasks();
+        Set<UserTask> connections = user.getUserTasks();
+        Set<Task> taskList = new HashSet<>();
+        Iterator<UserTask> iter = connections.iterator();
+
+        while (iter.hasNext()) {
+            taskList.add(iter.next().getTask());
+        }
+        return taskList;
     }
 
     @Override
-    public TaskSummary shareTask(Long id, ShareTaskRequest shareTaskRequest, UserPrincipal userPrincipal){
+    public void shareTask(Long id, ShareTaskRequest shareTaskRequest, UserPrincipal userPrincipal) {
         User user = userRepository.findByEmail(shareTaskRequest.getShareToEmail())
                 .orElseThrow(() ->
                         new NotFoundException("User not found [email: " + shareTaskRequest.getShareToEmail() + "]")
                 );
         Task task = taskRepository.getOne(id);
-        task.setSharedBy(userPrincipal.getName());
-        user.getTasks().add(task);
+        UserTask userTask = new UserTask();
+        userTask.setTask(task);
+        userTask.setUser(user);
+        userTask.setSharedBy(userPrincipal.getName());
+        user.getUserTasks().add(userTask);
         taskRepository.save(task);
-        return TaskSummary.builder()
-                .id(task.getId())
-                .caption(task.getCapture())
-                .sharedBy(task.getSharedBy())
-                .build();
+
     }
 
-
 }
+
+
+

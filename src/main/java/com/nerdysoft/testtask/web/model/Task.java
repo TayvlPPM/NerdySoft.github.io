@@ -6,8 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,14 +20,14 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String sharedBy;
-
     @NotBlank
     private String capture;
 
 
-    public Task(@NotEmpty @Size(max = 40) String sharedBy, @NotBlank @Size(max = 40) String capture) {
-        this.sharedBy = sharedBy;
+    @OneToMany(mappedBy = "task")
+    private Set<UserTask> userTasks = new HashSet<UserTask>();
+
+    public Task( @NotBlank @Size(max = 40) String capture) {
         this.capture = capture;
     }
 }

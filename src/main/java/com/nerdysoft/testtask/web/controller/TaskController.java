@@ -7,8 +7,6 @@ import com.nerdysoft.testtask.web.dto.UpdTaskRequest;
 import com.nerdysoft.testtask.web.model.Task;
 import com.nerdysoft.testtask.web.service.TaskServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.nerdysoft.testtask.web.security.CurrentUser;
@@ -38,14 +36,14 @@ public class TaskController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('USER')")
-    public TaskSummary updateMyTask(@PathVariable Long id,@Valid @RequestBody UpdTaskRequest updTaskRequest) {
-        return taskServiceImpl.updateTask(id, updTaskRequest);
+    public TaskSummary updateMyTask(@PathVariable Long id,@Valid @RequestBody UpdTaskRequest updTaskRequest, @CurrentUser UserPrincipal currentUser) {
+        return taskServiceImpl.updateTask(id, updTaskRequest, currentUser);
         }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('USER')")
-    public void removeTask(@PathVariable Long id) {
-        taskServiceImpl.deleteTask(id);
+    public void removeTask(@PathVariable Long id,@CurrentUser UserPrincipal currentUser) {
+        taskServiceImpl.deleteTask( id, currentUser);
     }
 
     @GetMapping("/")
@@ -58,8 +56,8 @@ public class TaskController {
     @PostMapping("/{id}")
     @PreAuthorize("hasRole('USER')")
     @ResponseBody
-    public TaskSummary shareTask(@PathVariable Long id, @Valid @RequestBody ShareTaskRequest shareTaskRequest, UserPrincipal userPrincipal) {
-        return taskServiceImpl.shareTask(id, shareTaskRequest, userPrincipal);
+    public void shareTask(@PathVariable Long id, @Valid @RequestBody ShareTaskRequest shareTaskRequest, UserPrincipal userPrincipal) {
+        taskServiceImpl.shareTask(id, shareTaskRequest, userPrincipal);
     }
 
 }

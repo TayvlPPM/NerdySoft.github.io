@@ -1,16 +1,26 @@
 package com.nerdysoft.testtask.web.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+
 @Getter
 @Setter
-@AllArgsConstructor
-@Builder
 public class TaskSummary {
+
+    @NotBlank
     private Long id;
+
     private String caption;
+
     private String sharedBy;
+
+    public TaskSummary(@NotBlank Long id,
+                    String caption,
+                       String sharedBy) {
+        this.id = id;
+        this.caption = caption;
+        this.sharedBy = sharedBy;
+    }
 }
