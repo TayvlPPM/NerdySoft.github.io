@@ -15,14 +15,13 @@ public class UserTask {
 
     @ManyToOne
     @MapsId("user_id")
-    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
     @MapsId("task_id")
-    @JoinColumn(name = "task_id")
     private Task task;
 
+    @Column(name = "shared_by")
     private String sharedBy;
 
 }

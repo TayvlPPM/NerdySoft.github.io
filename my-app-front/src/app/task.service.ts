@@ -39,7 +39,7 @@ export class TaskService {
 
   updateTask(data:any) {
     return this.http.put(apiUrl + '/' + data.id, data.capture)
-      .pipe(
+      .pipe( 
         tap(_ => this.log('Task deleted')),
         catchError(this.handleError('deleteTask', []))
       );

@@ -24,10 +24,10 @@ public class Task {
     private String capture;
 
 
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private Set<UserTask> userTasks = new HashSet<UserTask>();
 
-    public Task( @NotBlank @Size(max = 40) String capture) {
+    public Task(@NotBlank @Size(max = 40) String capture) {
         this.capture = capture;
     }
 }

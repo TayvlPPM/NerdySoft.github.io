@@ -5,6 +5,7 @@ import com.nerdysoft.testtask.web.dto.ShareTaskRequest;
 import com.nerdysoft.testtask.web.dto.TaskSummary;
 import com.nerdysoft.testtask.web.dto.UpdTaskRequest;
 import com.nerdysoft.testtask.web.model.Task;
+import com.nerdysoft.testtask.web.model.UserTask;
 import com.nerdysoft.testtask.web.service.TaskServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -48,7 +49,7 @@ public class TaskController {
 
     @GetMapping("/")
     @PreAuthorize("hasRole('USER')")
-    public Set<Task> showTasks(@CurrentUser UserPrincipal currentUser) {
+    public Set<UserTask> showTasks(@CurrentUser UserPrincipal currentUser) {
         return taskServiceImpl.listAll(currentUser);
 
     }
@@ -56,8 +57,8 @@ public class TaskController {
     @PostMapping("/{id}")
     @PreAuthorize("hasRole('USER')")
     @ResponseBody
-    public void shareTask(@PathVariable Long id, @Valid @RequestBody ShareTaskRequest shareTaskRequest, UserPrincipal userPrincipal) {
-        taskServiceImpl.shareTask(id, shareTaskRequest, userPrincipal);
+    public TaskSummary shareTask(@PathVariable Long id, @Valid @RequestBody ShareTaskRequest shareTaskRequest,@CurrentUser UserPrincipal userPrincipal) {
+        return taskServiceImpl.shareTask(id, shareTaskRequest, userPrincipal);
     }
 
 }

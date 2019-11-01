@@ -7,18 +7,22 @@
       <a mat-flat-button color="primary" (click)="logout()">Logout</a>
     </div>
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="data" class="example-table" >
-         
-        <!-- Product ID Column -->
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
         <ng-container matColumnDef="capture">
-          <th mat-header-cell *matHeaderCellDef>Product Name</th>
-          <td mat-cell *matCellDef="let row" contenteditable="true">{{row.capture}}</td>
+          <th mat-header-cell *matHeaderCellDef> Task </th>
+          <td mat-cell *matCellDef="let row"> {{row.capture}} </td>
         </ng-container>
-  
-        <!-- ISBN Column -->
+      
         <ng-container matColumnDef="sharedBy">
-          <th mat-header-cell *matHeaderCellDef>Product Description</th>
-          <td mat-cell *matCellDef="let row">{{row.sharedBy}}<button type="button" (click)="delTask(row)">X</button><button type="button" (click)="updateTask(row)">update</button></td>
+          <th mat-header-cell *matHeaderCellDef> Shared By User </th>
+          <td mat-cell *matCellDef="let row"> {{row.sharedBy}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> <button type="button" (click)="delTask(row)">X</button>
+                                                  <button type="button" (click)="updateTask(row)">others</button> </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

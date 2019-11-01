@@ -16,11 +16,16 @@ import javax.persistence.GenerationType;
 @Embeddable
 public class UserTaskId implements Serializable {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long user_id;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id")
     private Long task_id;
+
+    public UserTaskId (){};
+
+    public UserTaskId(Long user_id, Long task_id) {
+        this.user_id = user_id;
+        this.task_id = task_id;
+    }
 }

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Set;
 
-@Repository
 public interface UserTaskRepository extends JpaRepository<UserTask, Long> {
 
     Set<UserTask> findByUser_id(Long user_id);
