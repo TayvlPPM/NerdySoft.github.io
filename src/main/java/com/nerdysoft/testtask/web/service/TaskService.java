@@ -14,7 +14,7 @@ import java.util.Set;
 public interface TaskService {
     TaskSummary addTask(AddTaskRequest addTaskRequest, UserPrincipal userPrincipal);
     TaskSummary updateTask(Long id, UpdTaskRequest updTaskRequest, UserPrincipal userPrincipal);
-    Set<UserTask> listAll(UserPrincipal userPrincipal);
+    Set<TaskSummary> listAll(UserPrincipal userPrincipal);
     void deleteTask(Long id, UserPrincipal userPrincipal);
     TaskSummary shareTask(Long id, ShareTaskRequest shareTaskRequest, UserPrincipal userPrincipal);
 }

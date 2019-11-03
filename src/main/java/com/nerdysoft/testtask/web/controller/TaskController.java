@@ -49,7 +49,7 @@ public class TaskController {
 
     @GetMapping("/")
     @PreAuthorize("hasRole('USER')")
-    public Set<UserTask> showTasks(@CurrentUser UserPrincipal currentUser) {
+    public Set<TaskSummary> showTasks(@CurrentUser UserPrincipal currentUser) {
         return taskServiceImpl.listAll(currentUser);
 
     }
