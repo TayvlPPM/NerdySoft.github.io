@@ -46,3 +46,7 @@ table {
 .mat-flat-button {
     margin: 5px;
 }
+
+.input-colored {
+    background-color: dimgrey;
+}

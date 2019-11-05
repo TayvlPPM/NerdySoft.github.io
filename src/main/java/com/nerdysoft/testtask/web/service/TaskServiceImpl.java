@@ -74,15 +74,14 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     public Set<TaskSummary> listAll(UserPrincipal userPrincipal) {
         User user = userRepository.getOne(userPrincipal.getId());
+        Task task = new Task();
         Set<UserTask> connections = user.getUserTasks();
         Set<TaskSummary> taskList = new HashSet<>();
-        Iterator<UserTask> iter = connections.iterator();
-        Iterator<TaskSummary> iter2 = taskList.iterator();
 
-        while (iter.hasNext() && iter2.hasNext()){
-            iter2.next().setId(iter.next().getTask().getId());
-            iter2.next().setCaption(iter.next().getTask().getCapture());
-            iter2.next().setSharedBy(iter.next().getSharedBy());
+        for (UserTask userTask : connections) {
+            task = userTask.getTask();
+            TaskSummary taskSummary = new TaskSummary(task.getId(),task.getCapture(),userTask.getSharedBy());
+            taskList.add(taskSummary);
         }
 
         return taskList;

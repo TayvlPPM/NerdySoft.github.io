@@ -37,11 +37,19 @@ export class TaskService {
       );
   }
 
-  updateTask(data:any) {
-    return this.http.put(apiUrl + '/' + data.id, data.capture)
+  updateTask(id:number, data:any): Observable<Task[]> {
+    return this.http.put<Task[]>(apiUrl + '/' + id, data)
       .pipe( 
-        tap(_ => this.log('Task deleted')),
-        catchError(this.handleError('deleteTask', []))
+        tap(_ => this.log('Task updated')),
+        catchError(this.handleError('updateTask', []))
+      );
+  }
+
+  shareTask(id:number,data:any): Observable<Task[]> {
+    return this.http.post<Task[]>(apiUrl + '/' + id, data)
+      .pipe(
+        tap(_ => this.log('Task shared')),
+        catchError(this.handleError('shareTask', []))
       );
   }
 

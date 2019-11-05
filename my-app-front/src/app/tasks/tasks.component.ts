@@ -1,28 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from './task';
 import { TaskService } from '../task.service';
-import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { NgxSmartModalService } from 'ngx-smart-modal';
+
+
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
+
 export class TasksComponent implements OnInit {
   addForm: FormGroup;
-  data: Task[] = [];
-  displayedColumns: string[] = ['capture', 'sharedBy'];
+  updateForm: FormGroup;
+  shareForm: FormGroup;
+  dataSource: Task[] = [];
+  displayedColumns: string[] = ['options','caption', 'sharedBy'];
   isLoadingResults = true;
+  taskId:any;
+ 
 
-  constructor(private formBuilder: FormBuilder, private taskService: TaskService, private authService: AuthService, private router: Router) { }
+  constructor(public ngxSmartModalService: NgxSmartModalService, private formBuilder: FormBuilder, private taskService: TaskService, private router: Router) { }
 
   getTasks(): void {
     this.taskService.getTasks()
       .subscribe(tasks => {
-        this.data = tasks;
-        console.log(this.data);
+        this.dataSource = tasks;
+        console.log(this.dataSource);
         this.isLoadingResults = false;
       }, err => {
         console.log(err);
@@ -39,28 +46,52 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  updateTask(data:any): void {
-    console.log(data);
-   // this.taskService.updateTask(data).subscribe(res => {
-    this.getTasks();
-   // }, (err) => {
-    //  console.log(err);
-    //  alert(err.error);
-   // });
+  chooseTask(data:any): number{
+    this.taskId=data.id;
+    console.log(this.taskId);
+    return this.taskId;
   }
 
-  onFormSubmit(form: NgForm) {
-    this.taskService.addTask(form).subscribe(res => {
-    this.getTasks();
-    this.addForm.reset();
+  updateTask(data:NgForm) {
+    this.taskService.updateTask(this.taskId,data).subscribe(res => {
+      this.updateForm.reset();
+      this.getTasks();
+      }, (err) => {
+        console.log(err);
+        alert(err.error);
+      });
+  }
+
+  shareTask(data:NgForm) {
+    console.log(this.taskId,data);
+    this.taskService.shareTask(this.taskId,data).subscribe(res => {
+      this.shareForm.reset();
+      this.getTasks();
+      }, (err) => {
+        console.log(err);
+        alert(err.error);
+      });
+  }
+
+  addTask(data: NgForm) {
+    this.taskService.addTask(data).subscribe(res => {
+      this.addForm.reset();
+      this.getTasks();
     }, (err) => {
       console.log(err);
       alert(err.error);
     });
   }
+
   ngOnInit() {
     this.addForm = this.formBuilder.group({
       'capture' : [null, Validators.required]
+    });
+    this.updateForm = this.formBuilder.group({
+      'new_caption' : [null, Validators.required]
+    });
+    this.shareForm = this.formBuilder.group({
+      'shareToEmail' : [null, Validators.required]
     });
     this.getTasks();
   }

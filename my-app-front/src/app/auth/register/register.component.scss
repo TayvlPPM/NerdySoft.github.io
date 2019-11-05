@@ -12,10 +12,13 @@
 
 .example-full-width {
   width: 100%;
+  color: green;
 }
 
 .example-full-width:nth-last-child(0) {
+  color: green;
   margin-bottom: 10px;
+  
 }
 
 .button-row {
