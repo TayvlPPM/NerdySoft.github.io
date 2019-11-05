@@ -26,7 +26,6 @@
       <change afterPath="$PROJECT_DIR$/my-app-front/src/assets/.gitkeep" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/my-app-front/src/environments/environment.prod.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/my-app-front/src/environments/environment.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-app-front/src/favicon.ico" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/my-app-front/src/index.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/my-app-front/src/main.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/my-app-front/src/polyfills.ts" afterDir="false" />
@@ -37,15 +36,7 @@
       <change afterPath="$PROJECT_DIR$/my-app-front/tsconfig.spec.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/my-app-front/tslint.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app-front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-app-front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app-front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-app-front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app-front/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app-front/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app-front/src/app/tasks/task.ts" beforeDir="false" afterPath="$PROJECT_DIR$/my-app-front/src/app/tasks/task.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app-front/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/my-app-front/src/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nerdysoft/testtask/web/model/UserTaskId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nerdysoft/testtask/web/model/UserTaskId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nerdysoft/testtask/web/service/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nerdysoft/testtask/web/service/TaskServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/nerdysoft/testtask/web/model/UserTaskId.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nerdysoft/testtask/web/model/UserTaskId.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/nerdysoft/testtask/web/service/TaskServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nerdysoft/testtask/web/service/TaskServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,7 +77,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/nerdysoft/testtask/web/controller/TaskController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
@@ -98,14 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/nerdysoft/testtask/web/dto/TaskSummary.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="291">
+              <caret line="110" column="49" selection-start-line="110" selection-start-column="49" selection-end-line="110" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -234,7 +222,6 @@
         <option value="$PROJECT_DIR$/nerdysoft_test_front/src/Form.js" />
         <option value="$PROJECT_DIR$/nerdysoft_test_front/public/index.html" />
         <option value="$PROJECT_DIR$/nerdysoft_test_front/src/index.js" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/nerdysoft/testtask/web/config/WebMvcConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nerdysoft/testtask/web/config/SecurityConfig.java" />
         <option value="$PROJECT_DIR$/my-app-front/src/app/auth.service.ts" />
@@ -260,6 +247,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/nerdysoft/testtask/web/service/TaskServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nerdysoft/testtask/web/service/TaskService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/nerdysoft/testtask/web/controller/TaskController.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -282,7 +270,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -374,7 +362,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -457,11 +445,12 @@
       <workItem from="1572822943264" duration="1861000" />
       <workItem from="1572865277160" duration="3019000" />
       <workItem from="1572943565597" duration="3642000" />
+      <workItem from="1572972169152" duration="721000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107357000" />
+    <option name="totallyTimeSpent" value="108078000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -474,8 +463,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2730711" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27760968" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -557,16 +547,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/my-app-front/src/app/interceptors/token.interceptor.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="46" column="37" lean-forward="true" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-app-front/src/app/auth/auth.guard.spec.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -948,6 +928,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="110" column="49" selection-start-line="110" selection-start-column="49" selection-end-line="110" selection-end-column="49" />
         </state>
       </provider>
     </entry>
