@@ -29,6 +29,3 @@ RDBMS chosen is MySQL
    ```
 2.Project runs in localhost:4200/api/
 
-
-Sorry for my bad front-end, shame on me.
-Also, I know about data duplication in tables "user_tasks" and "users", field "username", when i noticed that there was no time to chage it.
